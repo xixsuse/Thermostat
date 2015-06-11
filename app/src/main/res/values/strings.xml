@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Thermostat</string>
+
+
+    <string name="title_section1">Home</string>
+    <string name="title_section2">Schedule</string>
+    <string name="title_section3">Settings</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
