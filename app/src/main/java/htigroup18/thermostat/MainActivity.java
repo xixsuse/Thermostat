@@ -1,7 +1,8 @@
 package htigroup18.thermostat;
 
-import java.util.Locale;
 
+
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -14,9 +15,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import com.devadvance.circularseekbar.CircularSeekBar;
+import com.devadvance.circularseekbar.CircularSeekBar.OnCircularSeekBarChangeListener;
+
+import java.util.Locale;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -30,17 +37,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     SectionsPagerAdapter mSectionsPagerAdapter;
+    private Handler repeatUpdateHandler;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    CircularSeekBar slider;
+    TextView testing;
+    Button plus,minus;
+    boolean incrementing,decrementing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        repeatUpdateHandler= new Handler();
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -52,7 +64,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        incrementing=false;
+        decrementing=false;
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
         // a reference to the Tab.
@@ -74,7 +87,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+
     }
+
+
+
 
 
     @Override
@@ -103,6 +121,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
+        slider = (CircularSeekBar) findViewById(R.id.circularSeekBar1);
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
@@ -128,11 +147,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-           switch(position){
-               case 0: return new Tab1();
-               case 1:return new Tab2();
-               case 2:return new Tab3();
-           }
+            switch (position) {
+                case 0:
+                    return new Tab1();
+                case 1:
+                    return new Tab2();
+                case 2:
+                    return new Tab3();
+            }
             return new PlaceholderFragment();
         }
 
@@ -191,33 +213,102 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
 
+    public  class Tab1 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
-public static class Tab1 extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
-    private static final String ARG_SECTION_NUMBER = "section_number";
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public  Tab1 newInstance(int sectionNumber) {
+            Tab1 fragment = new Tab1();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static Tab1 newInstance(int sectionNumber) {
-        Tab1 fragment = new Tab1();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.tab1, container, false);
+
+
+            return rootView;
+        }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState){
+        slider=(CircularSeekBar) findViewById(R.id.circularSeekBar1);
+            slider.setMax(250);
+            testing= (TextView) findViewById(R.id.testing);
+            slider.setOnSeekBarChangeListener(new CircleSeekBarListener(){
+                @Override
+                public void onProgressChanged(CircularSeekBar circularSeekBar, int progress, boolean fromUser) {
+                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                }
+            });
+            plus=(Button) findViewById(R.id.plus);
+            minus=(Button) findViewById(R.id.minus);
+            plus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    slider.setProgress(slider.getProgress()+1);
+                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                }
+            });
+            minus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    slider.setProgress(slider.getProgress()-1);
+                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                }
+            });
+            plus.setOnLongClickListener(
+                    new View.OnLongClickListener(){
+                        public boolean onLongClick(View arg0) {
+                            incrementing = true;
+                            repeatUpdateHandler.post( new RptUpdater() );
+                            return false;
+                        }
+                    }
+            );
+
+            plus.setOnTouchListener( new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if( (event.getAction()==MotionEvent.ACTION_UP || event.getAction()==MotionEvent.ACTION_CANCEL)
+                            && incrementing ){
+                        incrementing = false;
+                    }
+                    return false;
+                }
+            });
+            minus.setOnLongClickListener(
+                    new View.OnLongClickListener(){
+                        public boolean onLongClick(View arg0) {
+                            decrementing = true;
+                            repeatUpdateHandler.post( new RptUpdater() );
+                            return false;
+                        }
+                    }
+            );
+
+            minus.setOnTouchListener( new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    if( (event.getAction()==MotionEvent.ACTION_UP || event.getAction()==MotionEvent.ACTION_CANCEL)
+                            && decrementing ){
+                        decrementing = false;
+                    }
+                    return false;
+                }
+            });
+        }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1, container, false);
-        return rootView;
-    }
-}
     public static class Tab2 extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -233,6 +324,7 @@ public static class Tab1 extends Fragment {
             Tab2 fragment = new Tab2();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+
             fragment.setArguments(args);
             return fragment;
         }
@@ -244,31 +336,58 @@ public static class Tab1 extends Fragment {
             return rootView;
         }
     }
-        public static class Tab3 extends Fragment {
-            /**
-             * The fragment argument representing the section number for this
-             * fragment.
-             */
-            private static final String ARG_SECTION_NUMBER = "section_number";
 
-            /**
-             * Returns a new instance of this fragment for the given section
-             * number.
-             */
-            public static Tab3 newInstance(int sectionNumber) {
-                Tab3 fragment = new Tab3();
-                Bundle args = new Bundle();
-                args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-                fragment.setArguments(args);
-                return fragment;
-            }
+    public static class Tab3 extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                     Bundle savedInstanceState) {
-                View rootView = inflater.inflate(R.layout.tab3, container, false);
-                return rootView;
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static Tab3 newInstance(int sectionNumber) {
+            Tab3 fragment = new Tab3();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.tab3, container, false);
+            return rootView;
+        }
+    }
+
+    class RptUpdater implements Runnable {
+        public void run() {
+            if( incrementing ){
+                increment();
+                repeatUpdateHandler.postDelayed( new RptUpdater(), 50 );
+            } else if( decrementing ){
+                decrement();
+                repeatUpdateHandler.postDelayed( new RptUpdater(), 50 );
             }
+        }
+        public void increment(){
+            slider.setProgress(slider.getProgress()+1);
+            testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+
+        }
+        public void decrement(){
+            slider.setProgress(slider.getProgress()-1);
+            testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+        }
+    }
+
+
 }
 
-}
+
+
+
