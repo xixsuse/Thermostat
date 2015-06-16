@@ -2,6 +2,8 @@ package htigroup18.thermostat;
 
 
 
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -19,6 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.devadvance.circularseekbar.CircularSeekBar;
 import com.devadvance.circularseekbar.CircularSeekBar.OnCircularSeekBarChangeListener;
@@ -47,12 +50,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     TextView testing;
     Button plus,minus;
     boolean incrementing,decrementing;
+    ImageView arrowup,arrowdown;
+    public float targettemp,currenttemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         repeatUpdateHandler= new Handler();
+        currenttemp=25f;
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -88,7 +94,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
-
+            targettemp=5f;
     }
 
 
@@ -240,16 +246,65 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
             return rootView;
         }
+        public void updateUI(){
+            if(targettemp<18){
+                slider.setCircleProgressColor(Color.BLUE);
+
+            }
+            else if(targettemp<25){
+                slider.setCircleProgressColor(Color.GREEN);
+
+            }
+            else if(targettemp<31){
+                slider.setCircleProgressColor(Color.RED);
+
+            }
+            else{
+
+            }
+            if(targettemp>currenttemp){
+                arrowup.setVisibility(View.VISIBLE);
+                arrowdown.setVisibility(View.INVISIBLE);
+            }
+            else if(targettemp<currenttemp){
+                arrowup.setVisibility(View.INVISIBLE);
+                arrowdown.setVisibility(View.VISIBLE);
+            }
+            else{
+                arrowup.setVisibility(View.INVISIBLE);
+                arrowdown.setVisibility(View.INVISIBLE);
+            }
+            if(targettemp==30.0){
+                plus.setTextColor(Color.GRAY);
+            }
+            else{
+                plus.setTextColor(Color.WHITE);
+            }
+            if(targettemp==5.0){
+                minus.setTextColor(Color.GRAY);
+            }
+            else{
+                minus.setTextColor(Color.WHITE);
+            }
+
+        }
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState){
+            arrowup=(ImageView) findViewById(R.id.arrowup);
+            arrowdown=(ImageView) findViewById(R.id.arrowdown);
+            arrowup.setVisibility(View.INVISIBLE);
+            arrowdown.setVisibility(View.INVISIBLE);
         slider=(CircularSeekBar) findViewById(R.id.circularSeekBar1);
             slider.setMax(250);
             testing= (TextView) findViewById(R.id.testing);
             slider.setOnSeekBarChangeListener(new CircleSeekBarListener(){
                 @Override
                 public void onProgressChanged(CircularSeekBar circularSeekBar, int progress, boolean fromUser) {
-                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                    targettemp=(slider.getProgress()/10f)+5f;
+                    testing.setText(targettemp+" \u2103");
+                    updateUI();
+
                 }
             });
             plus=(Button) findViewById(R.id.plus);
@@ -257,22 +312,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    slider.setProgress(slider.getProgress()+1);
-                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                    if(targettemp!=30.0) {
+                        slider.setProgress(slider.getProgress() + 1);
+                        targettemp = (slider.getProgress() / 10f) + 5f;
+                        testing.setText(targettemp + " \u2103");
+                        updateUI();
+                    }
                 }
             });
             minus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    slider.setProgress(slider.getProgress()-1);
-                    testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+                    if(targettemp!=5.0) {
+                        slider.setProgress(slider.getProgress() - 1);
+                        targettemp = (slider.getProgress() / 10f) + 5f;
+                        testing.setText(targettemp + "\u2103");
+                        updateUI();
+                    }
                 }
             });
             plus.setOnLongClickListener(
                     new View.OnLongClickListener(){
                         public boolean onLongClick(View arg0) {
-                            incrementing = true;
-                            repeatUpdateHandler.post( new RptUpdater() );
+                            if(targettemp!=30.0) {
+                                incrementing = true;
+                                repeatUpdateHandler.post(new RptUpdater());
+                                return false;
+                            }
                             return false;
                         }
                     }
@@ -290,8 +356,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             minus.setOnLongClickListener(
                     new View.OnLongClickListener(){
                         public boolean onLongClick(View arg0) {
-                            decrementing = true;
-                            repeatUpdateHandler.post( new RptUpdater() );
+                            if(targettemp!=5.0) {
+                                decrementing = true;
+                                repeatUpdateHandler.post(new RptUpdater());
+                                return false;
+                            }
                             return false;
                         }
                     }
@@ -306,6 +375,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return false;
                 }
             });
+            slider.setProgress(200);
+            targettemp = (slider.getProgress() / 10f) + 5f;
+            testing.setText(targettemp+" \u2103");
+            updateUI();
         }
     }
 
@@ -375,13 +448,63 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             }
         }
         public void increment(){
-            slider.setProgress(slider.getProgress()+1);
-            testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+            if(targettemp!=30.0) {
+                slider.setProgress(slider.getProgress() + 1);
+                targettemp = (slider.getProgress() / 10f) + 5f;
+                testing.setText(targettemp + " \u2103");
+                updateUI();
+            }
+        }
+        public void updateUI(){
+            if(targettemp<18){
+                slider.setCircleProgressColor(Color.BLUE);
+
+            }
+            else if(targettemp<25){
+                slider.setCircleProgressColor(Color.GREEN);
+
+            }
+            else if(targettemp<31){
+                slider.setCircleProgressColor(Color.RED);
+
+            }
+            else{
+
+            }
+            if(targettemp>currenttemp){
+                arrowup.setVisibility(View.VISIBLE);
+                arrowdown.setVisibility(View.INVISIBLE);
+            }
+            else if(targettemp<currenttemp){
+                arrowup.setVisibility(View.INVISIBLE);
+                arrowdown.setVisibility(View.VISIBLE);
+            }
+            else{
+                arrowup.setVisibility(View.INVISIBLE);
+                arrowdown.setVisibility(View.INVISIBLE);
+            }
+            if(targettemp==30.0){
+                plus.setTextColor(Color.GRAY);
+            }
+            else{
+                plus.setTextColor(Color.WHITE);
+            }
+            if(targettemp==5.0){
+                minus.setTextColor(Color.GRAY);
+            }
+            else{
+                minus.setTextColor(Color.WHITE);
+            }
+
 
         }
-        public void decrement(){
-            slider.setProgress(slider.getProgress()-1);
-            testing.setText((slider.getProgress()/10f)+5f+" \u2103");
+        public void decrement() {
+            if(targettemp!=5.0) {
+                slider.setProgress(slider.getProgress() - 1);
+                targettemp = (slider.getProgress() / 10f) + 5f;
+                testing.setText(targettemp + " \u2103");
+                updateUI();
+            }
         }
     }
 

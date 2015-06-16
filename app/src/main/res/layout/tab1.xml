@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hoi1"
+        android:text="targettemp"
         android:id="@+id/testing"
         android:layout_gravity="center_horizontal"
         android:layout_centerVertical="true"
@@ -16,24 +16,13 @@
 
     <com.devadvance.circularseekbar.CircularSeekBar
         android:id="@+id/circularSeekBar1"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         app:circle_x_radius="100"
         app:circle_y_radius="100"
         app:max="30"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Permanent"
-        android:id="@+id/permamentbutton"
-        android:layout_below="@+id/circularSeekBar1"
-        android:layout_alignRight="@+id/circularSeekBar1"
-        android:layout_alignEnd="@+id/circularSeekBar1"
-        android:textOff="Temporary"
-        android:textOn="Permanent" />
 
     <Button
 
@@ -59,5 +48,88 @@
         android:layout_alignTop="@+id/plus"
         android:layout_alignLeft="@+id/circularSeekBar1"
         android:layout_alignStart="@+id/circularSeekBar1" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:layout_below="@+id/circularSeekBar1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp"
+        android:checkedButton="@+id/radioButton" >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="temporary"
+            android:id="@+id/radioButton"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="permanent"
+            android:id="@+id/radioButton2"
+            android:checked="false" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Current Temperature:"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="25 \u2103"
+        android:id="@+id/textView4"
+        android:textSize="30dp"
+        android:layout_alignBottom="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="60dp" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/arrowdown"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toRightOf="@+id/minus"
+        android:layout_toEndOf="@+id/minus"
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/arrowdown"
+        />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/arrowup"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toRightOf="@+id/minus"
+        android:layout_toEndOf="@+id/minus"
+        android:layout_marginLeft="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/arrowup"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="      Target \n temperature:"
+        android:id="@+id/textView7"
+        android:layout_alignTop="@+id/plus"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
