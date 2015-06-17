@@ -5,6 +5,7 @@ package htigroup18.thermostat;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,12 @@ import android.widget.TextView;
 import com.devadvance.circularseekbar.CircularSeekBar;
 import com.devadvance.circularseekbar.CircularSeekBar.OnCircularSeekBarChangeListener;
 
+import java.net.ConnectException;
+import java.net.URL;
 import java.util.Locale;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -47,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      */
     ViewPager mViewPager;
     CircularSeekBar slider;
-    TextView testing;
+    TextView testing,ctemp;
     Button plus,minus;
     boolean incrementing,decrementing;
     ImageView arrowup,arrowdown;
@@ -56,9 +62,41 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/18";
+        HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
         setContentView(R.layout.activity_main);
-        repeatUpdateHandler= new Handler();
-        currenttemp=25f;
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        repeatUpdateHandler = new Handler();
+        final android.os.Handler customHandler = new android.os.Handler();
+        Runnable updateTimerThread = new Runnable()
+        {
+            public void run()
+            {
+
+                try {
+                    currenttemp=Float.parseFloat(HeatingSystem.get("currentTemperature"));
+                    if(ctemp!=null) {
+                        ctemp.setText(currenttemp + " \u2103");
+                       updateUI();
+                    }
+
+                    HeatingSystem.put("currentTemperature",""+targettemp);
+                } catch (InvalidInputValueException e) {
+                    e.printStackTrace();
+                } catch (ConnectException e) {
+                    e.printStackTrace();
+                }
+                //write here whaterver you want to repeat
+                customHandler.postDelayed(this, 1000);
+            }
+        };
+
+        customHandler.postDelayed(updateTimerThread, 0);
+
+
+
+
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -70,8 +108,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        incrementing=false;
-        decrementing=false;
+        incrementing = false;
+        decrementing = false;
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
         // a reference to the Tab.
@@ -94,11 +132,58 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
-            targettemp=5f;
+        targettemp = 5f;
     }
 
 
 
+    public void updateUI(){
+        if(targettemp<18){
+            slider.setCircleProgressColor(Color.BLUE);
+
+        }
+        else if(targettemp<25){
+            slider.setCircleProgressColor(Color.GREEN);
+
+        }
+        else if(targettemp<31){
+            slider.setCircleProgressColor(Color.RED);
+
+        }
+        else{
+
+        }
+        if(targettemp==currenttemp){
+            arrowup.setVisibility(View.INVISIBLE);
+            arrowdown.setVisibility(View.INVISIBLE);
+        }
+        else if(targettemp>currenttemp){
+            arrowup.setVisibility(View.VISIBLE);
+            arrowdown.setVisibility(View.INVISIBLE);
+        }
+        else if(targettemp<currenttemp){
+            arrowup.setVisibility(View.INVISIBLE);
+            arrowdown.setVisibility(View.VISIBLE);
+        }
+
+        else{
+            arrowup.setVisibility(View.INVISIBLE);
+            arrowdown.setVisibility(View.INVISIBLE);
+        }
+        if(targettemp==30.0){
+            plus.setTextColor(Color.GRAY);
+        }
+        else{
+            plus.setTextColor(Color.WHITE);
+        }
+        if(targettemp==5.0){
+            minus.setTextColor(Color.GRAY);
+        }
+        else{
+            minus.setTextColor(Color.WHITE);
+        }
+
+    }
 
 
     @Override
@@ -219,7 +304,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
 
-    public  class Tab1 extends Fragment {
+    public class Tab1 extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -262,7 +347,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             else{
 
             }
-            if(targettemp>currenttemp){
+            if(targettemp==currenttemp){
+                arrowup.setVisibility(View.INVISIBLE);
+                arrowdown.setVisibility(View.INVISIBLE);
+            }
+            else if(targettemp>currenttemp){
                 arrowup.setVisibility(View.VISIBLE);
                 arrowdown.setVisibility(View.INVISIBLE);
             }
@@ -270,6 +359,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 arrowup.setVisibility(View.INVISIBLE);
                 arrowdown.setVisibility(View.VISIBLE);
             }
+
             else{
                 arrowup.setVisibility(View.INVISIBLE);
                 arrowdown.setVisibility(View.INVISIBLE);
@@ -291,12 +381,14 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState){
+
             arrowup=(ImageView) findViewById(R.id.arrowup);
             arrowdown=(ImageView) findViewById(R.id.arrowdown);
             arrowup.setVisibility(View.INVISIBLE);
             arrowdown.setVisibility(View.INVISIBLE);
         slider=(CircularSeekBar) findViewById(R.id.circularSeekBar1);
             slider.setMax(250);
+            ctemp=(TextView) findViewById(R.id.ctemp);
             testing= (TextView) findViewById(R.id.testing);
             slider.setOnSeekBarChangeListener(new CircleSeekBarListener(){
                 @Override
@@ -359,6 +451,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             if(targettemp!=5.0) {
                                 decrementing = true;
                                 repeatUpdateHandler.post(new RptUpdater());
+
                                 return false;
                             }
                             return false;
@@ -375,9 +468,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     return false;
                 }
             });
-            slider.setProgress(200);
-            targettemp = (slider.getProgress() / 10f) + 5f;
+            if(targettemp<5.0){
+                targettemp=5f;
+            }
+
             testing.setText(targettemp+" \u2103");
+
             updateUI();
         }
     }

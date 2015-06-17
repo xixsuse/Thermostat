@@ -89,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="25 \u2103"
-        android:id="@+id/textView4"
+        android:text="25.5 \u2103"
+        android:id="@+id/ctemp"
         android:textSize="30dp"
         android:layout_alignBottom="@+id/radioGroup"
         android:layout_alignParentLeft="true"
@@ -101,26 +101,20 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/arrowdown"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_toRightOf="@+id/minus"
-        android:layout_toEndOf="@+id/minus"
-        android:layout_marginLeft="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/arrowdown"
-        />
+        android:layout_alignTop="@+id/arrowup"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/arrowup"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_toRightOf="@+id/minus"
-        android:layout_toEndOf="@+id/minus"
-        android:layout_marginLeft="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/arrowup"
 
-        />
+        android:layout_alignTop="@+id/ctemp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
