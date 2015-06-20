@@ -2,8 +2,11 @@ package htigroup18.thermostat;
 
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
@@ -22,13 +25,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import com.devadvance.circularseekbar.CircularSeekBar;
 import com.devadvance.circularseekbar.CircularSeekBar.OnCircularSeekBarChangeListener;
 
+import java.lang.reflect.Array;
 import java.net.ConnectException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.xml.parsers.SAXParser;
@@ -56,8 +64,18 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     TextView testing,ctemp;
     Button plus,minus;
     boolean incrementing,decrementing;
-    ImageView arrowup,arrowdown;
+    ImageView arrowup,arrowdown,test,scale;
     public float targettemp,currenttemp;
+    boolean test2;
+    String day;
+    int monday,tuesday,wednesday,thursday,friday,saturday,sunday;
+    ArrayList<Switch> lmonday,ltuesday,lwednesday,lthursday,lfriday,lsaterday,lsunday;
+    boolean mondaynight;
+    HorizontalScrollView scroller;
+    Runnable updateTimerThread;
+    Handler handler;
+    WeekProgram wpg;
+    boolean temporary,permament,schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,32 +86,34 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         repeatUpdateHandler = new Handler();
-        final android.os.Handler customHandler = new android.os.Handler();
-        Runnable updateTimerThread = new Runnable()
+        wpg=new WeekProgram();
+        monday=0;tuesday=0;wednesday=0;thursday=0;friday=0;saturday=0;sunday=0;
+          lmonday=new ArrayList<Switch>();ltuesday=new ArrayList<Switch>();lwednesday=new ArrayList<Switch>();lthursday=new ArrayList<Switch>();lfriday=new ArrayList<Switch>();lsaterday=new ArrayList<Switch>();lsunday=new ArrayList<Switch>();
+       final android.os.Handler customHandler = new android.os.Handler();
+         updateTimerThread = new Runnable()
         {
             public void run()
             {
 
-                try {
-                    currenttemp=Float.parseFloat(HeatingSystem.get("currentTemperature"));
-                    if(ctemp!=null) {
-                        ctemp.setText(currenttemp + " \u2103");
-                       updateUI();
-                    }
-
-                    HeatingSystem.put("currentTemperature",""+targettemp);
-                } catch (InvalidInputValueException e) {
-                    e.printStackTrace();
-                } catch (ConnectException e) {
-                    e.printStackTrace();
+                if(ctemp!=null) {
+                    ctemp.setText(currenttemp + " \u2103");
+                    updateUI();
                 }
-                //write here whaterver you want to repeat
+                if(testing!=null){
+                testing.setText(targettemp+"\u2103");
+                    updateUI();
+                }
+
+
+                //write here whaterver you want to repeat*/
                 customHandler.postDelayed(this, 1000);
             }
         };
 
         customHandler.postDelayed(updateTimerThread, 0);
 
+        Thread thread=new Thread();
+        thread.execute();
 
 
 
@@ -134,6 +154,642 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         targettemp = 5f;
     }
+    public ArrayList<Switch> createlist(ArrayList<Switch> list){
+        ArrayList<Switch> temp=new ArrayList<Switch>();
+        temp.add(new Switch("night", false, "00:00"));
+        temp.add(new Switch("day", false, "07:00"));
+        temp.add(new Switch("night", false, "08:00"));
+        temp.add(new Switch("day", false, "16:00"));
+        temp.add(new Switch("night", false, "22:00"));
+        temp.add(new Switch("day", false, "23:00"));
+        temp.add(new Switch("night", false, "23:00"));
+        temp.add(new Switch("day", false, "23:00"));
+        temp.add(new Switch("night", false, "23:00"));
+        temp.add(new Switch("day", false, "23:00"));
+        int i;
+        for(i=0;i<list.size();i++){
+            String s=list.get(i).getType();
+            if(s.equals("day")){
+                int k=0;
+                while(k<temp.size()){
+                    if(temp.get(k).getType().equals("day")){
+                        temp.remove(k);
+                        break;
+                    }
+                    k++;
+                }
+            }
+            else{
+                int k=0;
+                while(k<temp.size()){
+                    if(temp.get(k).getType().equals("night")){
+                        temp.remove(k);
+                        break;
+                    }
+                    k++;
+                }
+
+            }
+
+            temp.add(list.get(i));
+        }
+        return temp;
+        
+    }
+public void saveprogram(View v){
+
+    String[] days={ "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    int i;
+    for(i=0;i<days.length;i++){
+        wpg.setDefault();
+    }
+    ArrayList<Switch> test=new ArrayList<Switch>();
+    test=createlist(lmonday);
+    wpg.setSwitches("Monday",test,test.size());
+    test=createlist(ltuesday);
+    wpg.setSwitches("Tuesday", test, test.size());
+    test=createlist(lwednesday);
+    wpg.setSwitches("Wednesday", test, test.size());
+    test=createlist(lthursday);
+    wpg.setSwitches("Thursday",test,test.size());
+    test=createlist(lfriday);
+    wpg.setSwitches("Friday",test,test.size());
+    test=createlist(lsaterday);
+    wpg.setSwitches("Saturday",test,test.size());
+    test=createlist(lsunday);
+    wpg.setSwitches("Sunday",test,test.size());
+    String test32=wpg.toXML();
+    //System.out.print(test32);
+    HeatingSystem.setWeekProgram(wpg);
+
+}
+    public void retrieveprogram(View v){
+        try {
+            wpg=HeatingSystem.getWeekProgram();
+            ArrayList<Switch> temp=new ArrayList<>();
+            temp=wpg.data.get("Monday");
+            int i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lmonday.clear();
+          lmonday=temp;
+            drawswitchesandbars(lmonday,"m");
+
+            temp=wpg.data.get("Tuesday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            ltuesday.clear();
+            ltuesday=temp;
+            drawswitchesandbars(ltuesday,"t");
+
+            temp=wpg.data.get("Wednesday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lwednesday.clear();
+           lwednesday=temp;
+            drawswitchesandbars(lwednesday,"w");
+
+            temp=wpg.data.get("Thursday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lthursday.clear();
+           lthursday=temp;
+            drawswitchesandbars(lthursday,"th");
+
+            temp=wpg.data.get("Friday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lfriday.clear();
+            lfriday=temp;
+            drawswitchesandbars(lfriday,"f");
+
+            temp=wpg.data.get("Saturday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lsaterday.clear();
+          lsaterday=temp;
+            drawswitchesandbars(lsaterday,"s");
+
+            temp=wpg.data.get("Sunday");
+            i=0;
+            while(i<temp.size()   ){
+                if(!temp.get(i).getState()){
+                    temp.remove(i);
+                }
+                else{
+                    i++;
+                }
+            }
+            lsunday.clear();
+            lsunday=temp;
+            drawswitchesandbars(lsunday,"su");
+
+
+
+        } catch (ConnectException e) {
+            e.printStackTrace();
+        } catch (CorruptWeekProgramException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void popup(String day){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You already have the maximum amount of switches (10) on "+day+".")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public int addswitch(ArrayList<Switch> list,Switch s){
+        if(list.size()==0){
+            list.add(s);
+            return list.size()-1;
+        }
+        else{
+            int time=s.getTime_Int();
+            int i;
+            for(i=0;i<list.size();i++){
+                if(time<list.get(i).getTime_Int()){
+                    list.add(i,s);
+                    return i;
+                }
+            }
+            list.add(s);
+            return list.size()-1;
+        }
+
+    }
+
+    public void drawswitchesandbars(ArrayList<Switch> list, String day){
+        int j=0;
+        while(j<25){
+            if (j * 100 < 1000) {
+                ImageView tem = (ImageView) scroller.findViewWithTag(day+"image" + "0" + j);
+                tem.setImageResource(R.drawable.emptyimage);
+            } else {
+                ImageView tem = (ImageView) scroller.findViewWithTag(day+"image" + j);
+                tem.setImageResource(R.drawable.emptyimage);
+            }
+            j++;
+        }
+
+        int i;
+        boolean night=true;
+        int k=0;
+        for(i=0;i<list.size();i++){
+            int time=list.get(i).getTime_Int();
+            if(time==0){
+                night=!night;
+            }
+            else {
+                while (k * 100 < time) {
+                    if (night) {
+                        if (k * 100 < 1000) {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day+"day" + "0" + k);
+                            tem.setImageResource(R.drawable.nightline);
+                        } else {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day+"day" + k);
+                            tem.setImageResource(R.drawable.nightline);
+                        }
+                    } else {
+                        if (k * 100 < 1000) {
+                            ImageView tem = (ImageView) scroller.findViewWithTag( day+"day"+"0" + k);
+                            tem.setImageResource(R.drawable.dayline);
+                        } else {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day+"day" + k);
+                            tem.setImageResource(R.drawable.dayline);
+                        }
+                    }
+                    k++;
+                }
+                int l=k;
+                if (k * 100 < 1000) {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"image" + "0" + k);
+                    tem.setImageResource(R.drawable.button);
+                } else {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"image" + k);
+                    tem.setImageResource(R.drawable.button);
+                }
+
+
+                night = !night;
+            }
+        }
+        while(k<24){
+            if(night){
+                if(k*100<1000) {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"day"+"0" + k );
+                    tem.setImageResource(R.drawable.nightline);
+                }
+                else {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"day"+ k );
+                    tem.setImageResource(R.drawable.nightline);
+                }
+            }
+            else{
+                if(k*100<1000) {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"day"+"0" + k );
+                    tem.setImageResource(R.drawable.dayline);
+                }
+                else {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day +"day"+ k );
+                    tem.setImageResource(R.drawable.dayline);
+                }
+            }
+            k++;
+        }
+    }
+    public void setbars(ArrayList<Switch> list,String day){
+        boolean night=true;
+        int k=0;
+        int l=0;
+        int i;
+        for(i=0;i<list.size();i++){
+            int time=list.get(i).getTime_Int();
+            if(time==0){
+                night=!night;
+            }
+            else {
+                while (k * 100 < time) {
+                    if (night) {
+                        if (k * 100 < 1000) {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day + "0" + k);
+                            tem.setImageResource(R.drawable.nightline);
+                        } else {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day + k);
+                            tem.setImageResource(R.drawable.nightline);
+                        }
+                    } else {
+                        if (k * 100 < 1000) {
+                            ImageView tem = (ImageView) scroller.findViewWithTag( day+"0" + k);
+                            tem.setImageResource(R.drawable.dayline);
+                        } else {
+                            ImageView tem = (ImageView) scroller.findViewWithTag(day + k);
+                            tem.setImageResource(R.drawable.dayline);
+                        }
+                    }
+                    k++;
+                }
+
+                night = !night;
+            }
+        }
+        while(k<24){
+            if(night){
+                if(k*100<1000) {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"0" + k );
+                    tem.setImageResource(R.drawable.nightline);
+                }
+                else {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+ k );
+                    tem.setImageResource(R.drawable.nightline);
+                }
+            }
+            else{
+                if(k*100<1000) {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day+"0" + k );
+                    tem.setImageResource(R.drawable.dayline);
+                }
+                else {
+                    ImageView tem = (ImageView) scroller.findViewWithTag(day + k );
+                    tem.setImageResource(R.drawable.dayline);
+                }
+            }
+            k++;
+        }
+
+    }
+    public void checkswitches( ArrayList<Switch> list, int i, String day){
+        int k;
+        for(k=i;k<list.size();k++){
+            String s=list.get(k).getType().toString();
+            if(s.equals("day")){
+                list.get(k).setType("night");
+            }
+            else{
+                list.get(k).setType("day");
+            }
+        }
+        k=1000;
+        setbars(list, day);
+    }
+    public void removeswitch(ArrayList<Switch> list, int i, String day){
+        list.remove(i);
+       checkswitches(list,i, day);
+    }
+   public void switchbutton(View k){
+        ImageView v= (ImageView) k;
+       String name=v.getTag().toString();
+       Switch temp=new Switch("day",true,name.replaceAll("[a-z]","")+":00");
+        if(v.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.emptyimage).getConstantState())){
+            if(name.replaceAll("[0-9]","").equals("mimage")){
+                if(monday<10 ) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lmonday,temp);
+                   if(monday==0){
+                     temp.setType("day");
+                       setbars(lmonday, "mday");
+                   }
+                    else {
+                        if(place%2==0){
+                            lmonday.get(place).setType("day");
+                            checkswitches(lmonday,place+1,"mday");
+                        }
+                       else{
+                            lmonday.get(place).setType("night");
+                            checkswitches(lmonday,place+1,"mday");
+                        }
+                   }
+                    monday++;
+
+
+                }
+                else{
+                    popup("Monday");
+                }
+            }
+           else if(name.replaceAll("[0-9]", "").equals("timage")){
+                if(tuesday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(ltuesday,temp);
+                    if(tuesday==0){
+                        temp.setType("day");
+                        setbars(ltuesday, "tday");
+                    }
+                    else {
+                        if(place%2==0){
+                            ltuesday.get(place).setType("day");
+                            checkswitches(ltuesday,place+1,"tday");
+                        }
+                        else{
+                            ltuesday.get(place).setType("night");
+                            checkswitches(ltuesday,place+1,"tday");
+                        }
+                    }
+                    tuesday++;
+                }
+                else{
+                    popup("Tuesday");
+                }
+            }
+            else if(name.replaceAll("[0-9]","").equals("wimage")){
+                if(wednesday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lwednesday,temp);
+                    if(wednesday==0){
+                        temp.setType("day");
+                        setbars(lwednesday, "wday");
+                    }
+                    else {
+                        if(place%2==0){
+                            lwednesday.get(place).setType("day");
+                            checkswitches(lwednesday,place+1,"wday");
+                        }
+                        else{
+                            lwednesday.get(place).setType("night");
+                            checkswitches(lwednesday,place+1,"wday");
+                        }
+                    }
+                    wednesday++;
+                }
+                else{
+                    popup("Wednesday");
+                }
+            }  else if(name.replaceAll("[0-9]","").equals( "thimage")){
+                if(thursday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lthursday,temp);
+                    if(thursday==0){
+                        temp.setType("day");
+                        setbars(lthursday,  "thday" );
+                    }
+                    else {
+                        if(place%2==0){
+                            lthursday.get(place).setType("day");
+                            checkswitches(lthursday,place+1, "thday" );
+                        }
+                        else{
+                            lthursday.get(place).setType("night");
+                            checkswitches(lthursday,place+1,"thday");
+                        }
+                    }
+                    thursday++;
+                }
+                else{
+                    popup("Thursday");
+                }
+            }
+            else if(name.replaceAll("[0-9]","").equals("fimage")){
+                if(friday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lfriday,temp);
+                    if(friday==0){
+                        temp.setType("day");
+                        setbars(lfriday,"fday");
+                    }
+                    else {
+                        if(place%2==0){
+                            lfriday.get(place).setType("day");
+                            checkswitches(lfriday,place+1, "fday");
+                        }
+                        else{
+                            lfriday.get(place).setType("night");
+                            checkswitches(lfriday,place+1,  "fday");
+                        }
+                    }
+                    friday++;
+                }
+                else{
+                    popup("Friday");
+                }
+            }
+            else if(name.replaceAll("[0-9]","").equals("simage")){
+                if(saturday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lsaterday,temp);
+                    if(saturday==0){
+                        temp.setType("day");
+                        setbars(lsaterday,"sday");
+                    }
+                    else {
+                        if(place%2==0){
+                            lsaterday.get(place).setType("day");
+                            checkswitches(lsaterday,place+1, "sday");
+                        }
+                        else{
+                            lsaterday.get(place).setType("night");
+                            checkswitches(lsaterday,place+1,"sday");
+                        }
+                    }
+                    saturday++;
+                }
+                else{
+                    popup("Saterday");
+                }
+            }
+            else if(name.replaceAll("[0-9]","").equals("suimage")){
+                if(sunday<10) {
+                    v.setImageResource(R.drawable.button);
+                    int place=addswitch(lsunday,temp);
+                    if(sunday==0){
+                        temp.setType("day");
+                        setbars(lsunday,"suday");
+                    }
+                    else {
+                        if(place%2==0){
+                            lsunday.get(place).setType("day");
+                            checkswitches(lsunday,place+1,"suday");
+                        }
+                        else{
+                            lsunday.get(place).setType("night");
+                            checkswitches(lsunday,place+1,"suday");
+                        }
+                    }
+                    sunday++;
+                }
+                else{
+                    popup("Sunday");
+                }
+
+            }
+
+
+        }
+        else if(v.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.button).getConstantState())) {
+                if (name.replaceAll("[0-9]","").equals("mimage")) {
+                    int i;
+                    for (i=0;i<lmonday.size();i++){
+                        if(lmonday.get(i).getTime().equals(temp.getTime())){
+
+                                removeswitch(lmonday,i, "mday");
+
+                        }
+                    }
+                    monday--;
+                    v.setImageResource(R.drawable.emptyimage);
+                }
+           else if ( name.replaceAll("[0-9]","").equals( "timage")) {
+                    int i;
+                    for (i=0;i<ltuesday.size();i++){
+                        if(ltuesday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(ltuesday,i, "tday");
+
+                        }
+                    }
+                tuesday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            else if (name.replaceAll("[0-9]","").equals("wimage")) {
+                    int i;
+                    for (i=0;i<lwednesday.size();i++){
+                        if(lwednesday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(lwednesday,i, "wday");
+
+                        }
+                    }
+                wednesday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            else if (name.replaceAll("[0-9]","").equals ("thimage")) {
+                    int i;
+                    for (i=0;i<lthursday.size();i++){
+                        if(lthursday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(lthursday,i, "thday");
+
+                        }
+                    }
+                thursday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            else if (name.replaceAll("[0-9]","").equals("fimage")) {
+                    int i;
+                    for (i=0;i<lfriday.size();i++){
+                        if(lfriday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(lfriday,i, "fday");
+
+                        }
+                    }
+                friday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            else if (name.replaceAll("[0-9]","").equals("simage")) {
+                    int i;
+                    for (i=0;i<lsaterday.size();i++){
+                        if(lsaterday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(lsaterday,i, "sday");
+
+                        }
+                    }
+                saturday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            else if (name.replaceAll("[0-9]","").equals("suimage")) {
+                    int i;
+                    for (i=0;i<lsunday.size();i++){
+                        if(lsunday.get(i).getTime().equals(temp.getTime())){
+
+                            removeswitch(lsunday,i, "suday");
+
+                        }
+                    }
+                sunday--;
+                v.setImageResource(R.drawable.emptyimage);
+            }
+            }
+        }
+
 
 
 
@@ -212,12 +868,22 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
         // the ViewPager.
-        slider = (CircularSeekBar) findViewById(R.id.circularSeekBar1);
         mViewPager.setCurrentItem(tab.getPosition());
+       /* if(tab.getText().equals("HOME")){
+            updateTimerThread.run();
+        }*/
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+       /* if(tab.getText().equals("HOME")){
+            try {
+
+                updateTimerThread.wait(999999999999999999L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
     }
 
     @Override
@@ -478,7 +1144,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
     }
 
-    public static class Tab2 extends Fragment {
+    public class Tab2 extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -489,7 +1155,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static Tab2 newInstance(int sectionNumber) {
+        public   Tab2 newInstance(int sectionNumber) {
             Tab2 fragment = new Tab2();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -504,6 +1170,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             View rootView = inflater.inflate(R.layout.tab2, container, false);
             return rootView;
         }
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState){
+            scroller=(HorizontalScrollView) findViewById(R.id.scollview);
+
+
+        }
+
     }
 
     public static class Tab3 extends Fragment {
@@ -602,6 +1275,48 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 updateUI();
             }
         }
+    }
+
+    protected class Thread extends AsyncTask{
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+            int k=params.length;
+            while(true) {
+                try{
+                    String temp=HeatingSystem.get("currentTemperature");
+                    if(temp!=null) {
+                        currenttemp = Float.parseFloat(temp);
+                    }
+                    if(day!=null ){
+                        String test=HeatingSystem.get("day");
+                        if(test!=null) {
+                            if (day.compareTo(test) != 0) {
+                                String temp2=HeatingSystem.get( "nightTemperature");
+                                if(temp2!=null) {
+                                    targettemp = Float.parseFloat(temp2);
+                                    HeatingSystem.put("currentTemperature",""+targettemp);
+                                }
+                                day = HeatingSystem.get("day");
+                            }
+                        }
+                    }
+                    if(day==null){
+                        day=HeatingSystem.get("day");
+                    }
+                    HeatingSystem.put("currentTemperature",""+targettemp);
+                } catch (InvalidInputValueException e) {
+                    e.printStackTrace();
+                } catch (ConnectException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
+
+
     }
 
 

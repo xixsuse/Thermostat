@@ -4,145 +4,2843 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/horizontalScrollView" >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Mo"
+                android:tag="textView12"
+                android:id="@+id/textView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Tu"
+                android:tag="textView5"
+                android:id="@+id/textView2"
+                android:layout_marginTop="34dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="We"
+                android:tag="textView6"
+                android:id="@+id/textView5"
+                android:layout_marginTop="34dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Th"
+                android:tag="textView13"
+                android:id="@+id/textView6"
+                android:layout_marginTop="34dp"
+                android:layout_marginLeft="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Fr"
+                android:tag="textView14"
+                android:id="@+id/textView8"
+                android:layout_marginTop="34dp"
+                android:layout_marginLeft="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Sa"
+                android:tag="textView15"
+                android:id="@+id/textView9"
+                android:layout_marginTop="34dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Su   "
+                android:tag="textView16"
+                android:id="@+id/textView10"
+                android:layout_marginTop="34dp" />
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tag="horizontalScrollView"
+            android:id="@+id/scollview"
+            android:layout_marginLeft="-10dp">
+
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Scale"
-                    android:id="@+id/textView2"
-                    android:layout_marginTop="10dp" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-                <SeekBar
-                    android:layout_width="500dp"
+                    <ImageView
+                        android:id="@+id/yolo"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage00"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:id="@+id/yolo"
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage01"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage02"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage03"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage04"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage05"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage06"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage07"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage08"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage09"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage10"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage11"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage12"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage13"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage14"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage15"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage16"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage17"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage18"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage19"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage20"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage21"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage23"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="mday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="mimage24"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" /><![CDATA[
+
+
+
+
+
+                    Button
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:text=""
+                        android:tag="button"
+                        android:background="@drawable/roundbutton"
+                        android:layout_marginTop="35dp" />
+
+
+
+                ]]>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/seekBar"
-                    android:progress="1"
-                    android:max="3" />
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage00"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage01"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage02"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage03"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage04"
+                        android:src="@drawable/emptyimage"
+                        android:focusableInTouchMode="true"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage05"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage06"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage07"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage08"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage09"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage10"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage11"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage12"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage13"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage14"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage15"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage16"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage17"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage18"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage19"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage20"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage21"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage23"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="tday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="timage24"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage00"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage01"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage02"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage03"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage04"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage05"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage06"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage07"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage08"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage09"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage10"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage11"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage12"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage13"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage14"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage15"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage16"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage17"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage18"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage19"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage20"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage21"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage23"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="wday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="wimage24"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" /><![CDATA[
+
+
+
+                    ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="imageView9"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="-12dp"
+                        />
+
+
+
+
+
+
+                ]]>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage00"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage01"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage02"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage03"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage04"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage05"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage06"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage07"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage08"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage09"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage10"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage11"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage12"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage13"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage14"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage15"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday15"
+                        android:src="@drawable/nightline"
+                        android:focusableInTouchMode="false" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage16"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage17"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage18"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage19"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage20"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage21"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday21"
+                        android:src="@drawable/nightline"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage23"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="thday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="thimage24"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage00"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage01"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage02"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage03"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage04"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage05"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage06"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage07"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage08"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage09"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage10"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage11"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage12"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage13"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage14"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage15"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage16"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage17"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage18"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage19"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage20"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage21"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage23"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="fday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="fimage24"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage00"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage01"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage02"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage03"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage04"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage05"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage06"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage07"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage08"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage09"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage10"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage11"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage12"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage13"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage14"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage15"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage16"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage17"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage18"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage19"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage20"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage21"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage23"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="sday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="simage24"
+                        android:src="@drawable/emptyimage"
+                        android:onClick="switchbutton"
+                        android:clickable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage00"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday00"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage01"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday01"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage02"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday02"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage03"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday03"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage04"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday04"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage05"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday05"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage06"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday06"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage07"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday07"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage08"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday08"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage09"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday09"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage10"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday10"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage11"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday11"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage12"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday12"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage13"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday13"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage14"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday14"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage15"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday15"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage16"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday16"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage17"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday17"
+                        android:src="@drawable/nightline"
+                        android:layout_marginLeft="1dp" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage18"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday18"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage19"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday19"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage20"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday20"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage21"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday21"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage22"
+                        android:src="@drawable/emptyimage"
+                        android:layout_marginLeft="1dp"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday22"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage23"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="35dp"
+                        android:tag="suday23"
+                        android:src="@drawable/nightline" />
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:tag="suimage24"
+                        android:src="@drawable/emptyimage"
+                        android:clickable="true"
+                        android:onClick="switchbutton" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="00:00"
+                        android:tag="textView2"
+                        android:layout_marginLeft="0dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="01:00"
+                        android:tag="textView19"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="02:00"
+                        android:tag="textView4"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="03:00"
+                        android:tag="textView8"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="04:00"
+                        android:tag="textView9"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="05:00"
+                        android:tag="textView10"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="06:00"
+                        android:tag="textView11"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="07:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="08:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="09:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="10:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="11:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="12:00"
+                        android:tag="textView17"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="13:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="14:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="15:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="16:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="17:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="18:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="19:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="20:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="21:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="22:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="23:00"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="23:59"
+                        android:tag="textView18"
+                        android:layout_marginLeft="20dp" />
+                </LinearLayout>
+
             </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Monday"
-                    android:id="@+id/textView12"
-                    android:layout_marginTop="35dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:tag="savebutton"
+            android:layout_marginLeft="100dp"
+            android:id="@+id/gfkldajfdkl"
+            android:onClick="saveprogram" />
 
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:text=""
-                    android:id="@+id/button"
-                    android:background="@drawable/roundbutton"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retrieve"
+            android:tag="button2"
+            android:layout_marginLeft="20dp"
+            android:onClick="retrieveprogram" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Tuesday"
-                    android:id="@+id/textView5"
-                    android:layout_marginTop="35dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Wednesday"
-                    android:id="@+id/textView6"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Thursday"
-                    android:id="@+id/textView13"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Friday"
-                    android:id="@+id/textView14"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Saterday"
-                    android:id="@+id/textView15"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Sunday"
-                    android:id="@+id/textView16"
-                    android:layout_marginTop="35dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </HorizontalScrollView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></LinearLayout>
 
 </LinearLayout>

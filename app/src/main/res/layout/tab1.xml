@@ -72,6 +72,12 @@
             android:text="permanent"
             android:id="@+id/radioButton2"
             android:checked="false" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Schedule"
+            android:id="@+id/radioButton3"
+            android:checked="false" />
     </RadioGroup>
 
     <TextView

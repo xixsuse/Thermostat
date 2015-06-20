@@ -11,4 +11,306 @@
         android:text="hoi3"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView214"
+            android:src="@drawable/verticalstripe"
+            android:layout_marginLeft="123dp" />
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="35dp"
+            android:tag="imageView215"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView216"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="35dp"
+            android:tag="imageView217"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView218"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView219"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView220"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView221"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView222"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView223"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView224"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView225"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView226"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView227"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView228"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView229"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView230"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView231"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView232"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView233"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView234"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView235"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView236"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView237"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView238"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView239"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView240"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView241"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView242"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView243"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView244"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView245"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView246"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView247"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView248"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView249"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView250"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView251"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView252"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView253"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView254"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView255"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView256"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView257"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView258"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView259"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView260"
+            android:src="@drawable/verticalstripe" />
+
+        <ImageView
+            android:layout_width="44.9dp"
+            android:layout_height="35dp"
+            android:tag="imageView261"
+            android:src="@drawable/nightline" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:tag="imageView262"
+            android:src="@drawable/verticalstripe" />
+    </LinearLayout>
 </LinearLayout>
