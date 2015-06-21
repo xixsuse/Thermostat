@@ -25,8 +25,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Scroller;
 import android.widget.TextView;
 import com.devadvance.circularseekbar.CircularSeekBar;
@@ -60,6 +63,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    RadioGroup rg;
     CircularSeekBar slider;
     TextView testing,ctemp;
     Button plus,minus;
@@ -68,18 +72,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public float targettemp,currenttemp;
     boolean test2;
     String day;
-    int monday,tuesday,wednesday,thursday,friday,saturday,sunday;
+    int monday,tuesday,wednesday,thursday,friday,saturday,sunday,time;
     ArrayList<Switch> lmonday,ltuesday,lwednesday,lthursday,lfriday,lsaterday,lsunday;
-    boolean mondaynight;
+    boolean sday;
     HorizontalScrollView scroller;
     Runnable updateTimerThread;
-    Handler handler;
+    EditText daytemp,nighttemp;
+
+
     WeekProgram wpg;
-    boolean temporary,permament,schedule;
+    boolean temporary,permament,schedule,change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        change=false;
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/18";
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
         setContentView(R.layout.activity_main);
@@ -87,6 +94,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         StrictMode.setThreadPolicy(policy);
         repeatUpdateHandler = new Handler();
         wpg=new WeekProgram();
+        time=-10;
         monday=0;tuesday=0;wednesday=0;thursday=0;friday=0;saturday=0;sunday=0;
           lmonday=new ArrayList<Switch>();ltuesday=new ArrayList<Switch>();lwednesday=new ArrayList<Switch>();lthursday=new ArrayList<Switch>();lfriday=new ArrayList<Switch>();lsaterday=new ArrayList<Switch>();lsunday=new ArrayList<Switch>();
        final android.os.Handler customHandler = new android.os.Handler();
@@ -102,6 +110,21 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 if(testing!=null){
                 testing.setText(targettemp+"\u2103");
                     updateUI();
+                }
+                if(rg!=null){
+                    if(change){
+                        if(temporary){
+                            rg.check(R.id.radioButton);
+                        }
+                        if(permament){
+                            rg.check(R.id.radioButton2);
+                        }
+                        if(schedule){
+                            rg.check(R.id.radioButton3);
+                        }
+                        change=false;
+                    }
+
                 }
 
 
@@ -153,6 +176,173 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
 
         targettemp = 5f;
+
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton:
+                if (checked){
+                    temporary=true;permament=false;schedule=false;
+                    try {
+                        HeatingSystem.put("weekProgramState","on");
+                    } catch (InvalidInputValueException e) {
+                        e.printStackTrace();
+                    }
+                    getswitch();
+                }
+                    break;
+            case R.id.radioButton2:
+                if (checked){
+                    temporary=false;permament=true;schedule=false;
+                    try {
+                        HeatingSystem.put("weekProgramState","off");
+                    } catch (InvalidInputValueException e) {
+                        e.printStackTrace();
+                    }
+                }
+                    break;
+            case R.id.radioButton3:
+                if (checked){
+                    temporary=false;permament=false;schedule=true;
+                    try {
+                        HeatingSystem.put("weekProgramState","on");
+                    } catch (InvalidInputValueException e) {
+                        e.printStackTrace();
+                    }
+                    schedule();
+                }
+                    break;
+        }
+
+    }
+    public void getswitch(){
+        try {
+            int currenttime=-10;
+            String currentday;
+            WeekProgram wpg = null;
+
+            do {
+                currenttime = Integer.parseInt(HeatingSystem.get("time").replace(":", ""));
+                currentday=HeatingSystem.get("day");
+                try {
+                    wpg=HeatingSystem.getWeekProgram();
+                } catch (CorruptWeekProgramException e) {
+                    e.printStackTrace();
+                }
+            }while(currenttime==-10||currentday==null||wpg==null);
+
+            switch (currentday){
+                case "Monday":getswitch2(wpg.data.get("Monday"),currenttime);
+                    break;
+                case "Tuesday":getswitch2(wpg.data.get("Tuesday"),currenttime);
+                    break;
+                case "Wednesday":getswitch2(wpg.data.get("Wednesday"),currenttime);
+                    break;
+                case "Thursday":getswitch2(wpg.data.get("Thursday"),currenttime);
+                    break;
+                case "Friday":getswitch2(wpg.data.get("Friday"),currenttime);
+                    break;
+                case "Saturday":getswitch2(wpg.data.get("Saturday"),currenttime);
+                    break;
+                case "Sunday":getswitch2(wpg.data.get("Sunday"),currenttime);
+                    break;
+            }
+
+        } catch (ConnectException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void getswitch2(ArrayList<Switch> list,int currenttime){
+        int i=0;
+        while(i<list.size()   ){
+            if(!list.get(i).getState()){
+                list.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+       for(i=0;i<list.size();i++){
+           if(currenttime<list.get(i).getTime_Int()){
+               time=list.get(i).getTime_Int();
+               if(list.get(i).getType().equals("day")){
+                   sday=true;
+               }
+               else{
+                   sday=false;
+               }
+               break;
+           }
+       }
+
+    }
+    public void schedule(){
+        getswitch();
+        if(!sday){
+            try {
+                targettemp=Float.parseFloat(HeatingSystem.get("dayTemperature").replace(":",""));
+            } catch (ConnectException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            try {
+                targettemp=Float.parseFloat(HeatingSystem.get("nightTemperature").replace(":",""));
+            } catch (ConnectException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public void savetemperatures(View v){
+        try {
+            if(!daytemp.getText().toString().equals("") && !nighttemp.getText().toString().equals("")) {
+                Float daytemperature = Float.parseFloat(daytemp.getText().toString());
+                if (daytemperature < 5 || daytemperature > 30) {
+                    popup2("day");
+                }
+                daytemperature = Float.parseFloat(nighttemp.getText().toString());
+                if (daytemperature < 5 || daytemperature > 30) {
+                    popup2("night");
+                } else {
+                    HeatingSystem.put("dayTemperature", daytemp.getText().toString());
+                    HeatingSystem.put("nightTemperature", nighttemp.getText().toString());
+                }
+            }
+            else{
+                popup2("daytemperature and the night");
+            }
+        } catch (InvalidInputValueException e) {
+            e.printStackTrace();
+        }
+    }
+    public void popup2(String day){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("The "+day+"temperature must be between 5 and 30")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void retrievetemperatures(View v){
+        try {
+            daytemp.setText(HeatingSystem.get("dayTemperature"));
+            nighttemp.setText(HeatingSystem.get("nightTemperature"));
+        } catch (ConnectException e) {
+            e.printStackTrace();
+        }
     }
     public ArrayList<Switch> createlist(ArrayList<Switch> list){
         ArrayList<Switch> temp=new ArrayList<Switch>();
@@ -1047,7 +1237,9 @@ public void saveprogram(View v){
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState){
-
+            View temporay=(View) findViewById(R.id.radioButton);
+            onRadioButtonClicked(temporay);
+            rg =(RadioGroup) findViewById(R.id.radioGroup);
             arrowup=(ImageView) findViewById(R.id.arrowup);
             arrowdown=(ImageView) findViewById(R.id.arrowdown);
             arrowup.setVisibility(View.INVISIBLE);
@@ -1179,7 +1371,7 @@ public void saveprogram(View v){
 
     }
 
-    public static class Tab3 extends Fragment {
+    public class Tab3 extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -1190,7 +1382,7 @@ public void saveprogram(View v){
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static Tab3 newInstance(int sectionNumber) {
+        public  Tab3 newInstance(int sectionNumber) {
             Tab3 fragment = new Tab3();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -1203,6 +1395,13 @@ public void saveprogram(View v){
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.tab3, container, false);
             return rootView;
+        }
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState){
+            daytemp=(EditText) findViewById(R.id.editText);
+            nighttemp=(EditText) findViewById(R.id.editText2);
+
+
         }
     }
 
@@ -1289,10 +1488,11 @@ public void saveprogram(View v){
                     if(temp!=null) {
                         currenttemp = Float.parseFloat(temp);
                     }
-                    if(day!=null ){
+                    if(day!=null && !permament){
                         String test=HeatingSystem.get("day");
                         if(test!=null) {
                             if (day.compareTo(test) != 0) {
+
                                 String temp2=HeatingSystem.get( "nightTemperature");
                                 if(temp2!=null) {
                                     targettemp = Float.parseFloat(temp2);
@@ -1301,6 +1501,23 @@ public void saveprogram(View v){
                                 day = HeatingSystem.get("day");
                             }
                         }
+                    }
+                    if(time!=-10 && temporary){
+                        String test=HeatingSystem.get("time").replace(":","");
+                        Integer test2=Integer.parseInt(test);
+                            if(time<=test2){
+                                temporary=false;schedule=true;
+                                change=true;
+                                if(sday){
+                                    String temp3=HeatingSystem.get("dayTemperature");
+                                    targettemp=Float.parseFloat(temp3);
+                                }
+                                else{
+                                    String temp3=HeatingSystem.get("nightTemperature");
+                                    targettemp=Float.parseFloat(temp3);
+                                }
+                            }
+
                     }
                     if(day==null){
                         day=HeatingSystem.get("day");

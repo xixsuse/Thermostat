@@ -64,20 +64,23 @@
             android:layout_height="wrap_content"
             android:text="temporary"
             android:id="@+id/radioButton"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="permanent"
             android:id="@+id/radioButton2"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Schedule"
             android:id="@+id/radioButton3"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked" />
     </RadioGroup>
 
     <TextView
@@ -98,10 +101,9 @@
         android:text="25.5 \u2103"
         android:id="@+id/ctemp"
         android:textSize="30dp"
-        android:layout_alignBottom="@+id/radioGroup"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="60dp" />
+        android:layout_below="@+id/textView"
+        android:layout_toLeftOf="@+id/testing"
+        android:layout_toStartOf="@+id/testing" />
 
     <ImageView
         android:layout_width="40dp"
